@@ -1,0 +1,22 @@
+.footer {
+  color: blue;
+}
+
+h1 {
+  font-family: 'Lucida Console', 'Courier New', monospace;
+}
+
+.product-img {
+  width: 100%;
+}
+
+.listado {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+}
+.card-prod {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  width: 80%;
+}

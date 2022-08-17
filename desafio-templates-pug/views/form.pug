@@ -1,0 +1,13 @@
+html
+    head
+        title='test pug'
+        style
+            include styles.css
+    body
+        h1="Agregar un producto"
+        a(href="/products")="Volver al listado"
+        form(action="/products", method="post") 
+            input(type="text", name="title",id="title", placeholder="Titulo")
+            input(type="text", name="price", id="price", placeholder="Precio")
+            input(type="text", name="thumbnail", id="thumbnail", placeholder="Thumbnail")
+            input(type="submit", value="Agregar")

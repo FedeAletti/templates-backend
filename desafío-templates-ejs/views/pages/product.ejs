@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body>
+    <h1 class=""><%=title %></h1>
+    <a href="/products">Volver al listado</a>
+    <div class="listado">
+        <div class="card-prod">
+          <p>
+              id: <%=product.id%><br/>
+              titulo: <%=product.title%><br/>
+              price: <%=product.price%><br/>
+              <img class="product-img" src="<%=product.thumbnail %>"/><br/>
+          </p>
+        </div>
+    </div>
+  </body>
+</html>

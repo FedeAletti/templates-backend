@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body>
+    <h1 class="">Cargar producto</h1>
+    <a href="/products">Volver al listado</a>
+    <div>
+        <form action="/products" method="post">
+            <input type="text" name="title" id="title">
+            <input type="text" name="price" id="price">
+            <input type="text" name="thumbnail" id="thumbnail">
+            <input type="submit" value="Cargar producto">
+        </form>
+    </div>
+    
+  </body>
+</html>

@@ -1,0 +1,14 @@
+html
+    head
+        title='test pug'
+        style
+            include styles.css
+    body
+        h1="listado de productos"
+        a(href="/products")="Volver al listado"
+        div(class="listado")
+            div(class="card-prod")
+                img(class='product-img', src=product.thumbnail)
+                p=product.id
+                p=product.title
+                p=product.price

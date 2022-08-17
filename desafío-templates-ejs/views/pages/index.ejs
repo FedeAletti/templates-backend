@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body>
+    <h1 class=""><%=title %></h1>
+    <a href="/form">Agregar un producto nuevo</a>
+    <div class="listado">
+      <% products.forEach((item)=>{ %>
+        <div class="card-prod">
+          <p>
+              id: <%=item.id%><br/>
+              titulo: <%=item.title%><br/>
+              price: <%=item.price%><br/>
+              <img class="product-img" src="<%=item.thumbnail %>"/><br/>
+          </p>
+        </div>
+    <% }) %>
+    </div>
+  </body>
+</html>

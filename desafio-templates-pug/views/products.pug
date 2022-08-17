@@ -1,0 +1,15 @@
+html
+    head
+        title='test pug'
+        style
+            include styles.css
+    body
+        h1="listado de productos"
+        a(href="/form")="Agregar nuevo producto" 
+        div(class="listado")
+            for item in products
+                div(class="card-prod")
+                    img(class='product-img', src=item.thumbnail)
+                    p=item.id
+                    p=item.title
+                    p=item.price
