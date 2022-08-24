@@ -3,11 +3,15 @@ const app = express();
 const { engine } = require('express-handlebars');
 const PORT = 8080;
 
-const server = app.listen(PORT, () => {
-  console.log(`Servidor http escuchando en el puerto ${server.address().port}`);
+const httpServer = require('http').createServer(app);
+const io = require('socket.io')(httpServer, {
+  cors: { origin: '*' },
 });
 
-server.on('error', (error) => console.log(`Error en servidor ${error}`));
+app.use(express.json());
+app.use(express.static(__dirname + '/public'));
+app.use(express.urlencoded({ extended: true }));
+
 app.use('/public', express.static(__dirname + '/public'));
 
 app.set('view engine', 'hbs');
@@ -43,9 +47,17 @@ let productsHC = [
   },
 ];
 
-app.get('/products', (req, res) => {
+let chat = [
+  {
+    email: 'admin@admin.com',
+    message: 'Bienvenido al chat',
+    date: new Date().toLocaleDateString(),
+  },
+];
+
+app.get('/', (req, res) => {
   //sirve productslist.hbs en index.hbs (index.hbs es la plantilla por defecto donde arranca todo)
-  res.render('productslist', { products: productsHC, productsExist: true });
+  res.render('productslist', { root: __dirname + '/public' });
 });
 
 app.get('/products/:id', (req, res) => {
@@ -80,3 +92,23 @@ app.post('/products', (req, res) => {
   productsHC.push(newProduct);
   res.redirect('/products');
 });
+
+io.on('connection', (socket) => {
+  console.log('Usuario Conectado ' + socket.id);
+  io.sockets.emit('products', productsHC);
+  io.sockets.emit('chat', chat);
+  // chat.push({ nombre: 'Server', msg: 'se unió al chat ' + socket.id });
+  // io.sockets.emit('arr-chat', chat);
+
+  socket.on('newMessage', (msg) => {
+    chat.push(msg);
+    io.sockets.emit('chat', chat);
+  });
+
+  socket.on('addProduct', (product) => {
+    productsHC.push(product);
+    io.sockets.emit('products', productsHC);
+  });
+});
+
+httpServer.listen(process.env.PORT || 8080, () => console.log('SERVER ON'));

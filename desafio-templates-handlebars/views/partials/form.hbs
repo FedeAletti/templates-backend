@@ -1,0 +1,10 @@
+<form id='productsForm' action='/products' method='post'>
+  <input type='text' id='title' placeholder='Type the title' />
+  <br />
+  <input type='text' id='price' placeholder='Type the price' />
+  <br />
+  <input type='text' id='thumbnail' placeholder='Type the thumbnail' />
+  <br />
+  {{! <button type='button' onclick='addProduct(productsForm)'>Send</button> }}
+  <input type='submit' value='Enviar' onclick='addProduct(productsForm)' />
+</form>
